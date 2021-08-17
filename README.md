@@ -2,6 +2,8 @@
 
 <a href="#"><img alt="Python 3.8" src="https://img.shields.io/badge/Python-3.8-blue"></a>
 <a href="#"><img alt="Flask" src="https://img.shields.io/badge/Flask%20-%23FF6F00.svg?logo=Flask&logoColor=white"></a>
+<a href="#"><img alt="MongoDB" src ="https://img.shields.io/badge/MongoDB-%234ea94b.svg?logo=mongodb&logoColor=white"></a>
+<a href="#"><img alt="Postman" src="https://img.shields.io/badge/Postman-%20-%23F37626.svg?logo=Postman&logoColor=white%22"></a>
 
 ### FlowChart
 
