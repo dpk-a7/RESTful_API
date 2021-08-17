@@ -23,8 +23,27 @@
 ### Run API:
 > `python app.py`
 
-### Steps:
-![image](https://github.com/dpk-a7/RESTful_API/blob/main/Steps.png)
+### Steps(Postman):
+1) Register
+![image](https://github.com/dpk-a7/RESTful_API/blob/main/images/register.jpg)
+2) Login
+![image](https://github.com/dpk-a7/RESTful_API/blob/main/images/login.jpg)
+3) Add x-access-token in headers
+![image](https://github.com/dpk-a7/RESTful_API/blob/main/images/x_access_token.jpg)
+4) Template:
+-> Create new Template:</br>
+![image](https://github.com/dpk-a7/RESTful_API/blob/main/images/post.jpg)
+-> Get all Templates:</br>
+![image](https://github.com/dpk-a7/RESTful_API/blob/main/images/get_all.jpg)
+-> Get single Template:</br>
+![image](https://github.com/dpk-a7/RESTful_API/blob/main/images/get_1.jpg)
+-> Update single Template:</br>
+![image](https://github.com/dpk-a7/RESTful_API/blob/main/images/update.jpg)
+-> Delete perticular Template:</br>
+![image](https://github.com/dpk-a7/RESTful_API/blob/main/images/delete.jpg)
+After deleting:</br>
+![image](https://github.com/dpk-a7/RESTful_API/blob/main/images/get_1_delete.jpg)
+
 
 ## Task:
 Create a RESTful API using flask and MongoDB with 3 URL endpoints. Use JWT access token to build a user module
