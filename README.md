@@ -27,8 +27,8 @@
 ![image](https://github.com/dpk-a7/RESTful_API/blob/main/Steps.png)
 
 ## Task:
-Create a RESTful API using flask and mongodb with 3 URL end points. Used JWT access token to build a user module
-You can register and host the mongodb database files here https://account.mongodb.com/account/register
+Create a RESTful API using flask and MongoDB with 3 URL endpoints. Use JWT access token to build a user module
+You can register and host the MongoDB database files here https://account.mongodb.com/account/register
 You must need to apply CRUD restriction for templates based on the user, so one user can't delete, update, or view other user's Templates
 
 1.Register
