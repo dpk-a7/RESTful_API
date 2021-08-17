@@ -17,7 +17,7 @@
 
 ## Get Started:
 #### Setup:
-> `virtualenv <Name>`
+> `virtualenv <Name>` </br>
 > `pip install -r requirements.txt`
 
 ### Run API:
