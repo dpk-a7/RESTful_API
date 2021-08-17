@@ -3,12 +3,12 @@
 <a href="#"><img alt="Python 3.8" src="https://img.shields.io/badge/Python-3.8-blue"></a>
 <a href="#"><img alt="Flask" src="https://img.shields.io/badge/Flask%20-%23FF6F00.svg?logo=Flask&logoColor=white"></a>
 
-###FlowChart
+### FlowChart
 
 
 ![image](https://user-images.githubusercontent.com/55245100/129690172-24f9aa1e-5e56-4bf7-bcfa-d23349ef071d.png)
 
-###Sequence Diagram  
+### Sequence Diagram  
 
 
 ![image](https://user-images.githubusercontent.com/55245100/129690225-45cbade1-d77d-4e47-9a2f-fbd330474673.png)
