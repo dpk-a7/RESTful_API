@@ -4,10 +4,10 @@
 <a href="#"><img alt="Flask" src="https://img.shields.io/badge/Flask%20-%23FF6F00.svg?logo=Flask&logoColor=white"></a>
 
 ###FlowChart
-![image](https://user-images.githubusercontent.com/55245100/129689978-df036cae-8798-4ae3-97b7-ef977e61a1d9.png)
+![image](https://user-images.githubusercontent.com/55245100/129690172-24f9aa1e-5e56-4bf7-bcfa-d23349ef071d.png)
 
 ###Sequence Diagram                  
-![image](https://user-images.githubusercontent.com/55245100/129690030-b71e50d2-0d2c-4139-80b8-d2e53278cd4b.png)
+![image](https://user-images.githubusercontent.com/55245100/129690225-45cbade1-d77d-4e47-9a2f-fbd330474673.png)
 
 ## Get Started:
 #### Setup:
