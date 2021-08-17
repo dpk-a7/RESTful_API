@@ -1,17 +1,41 @@
 # RESTful_API
 
-## Task
+<a href="#"><img alt="Python 3.8" src="https://img.shields.io/badge/Python-3.8-blue"></a>
+<a href="#"><img alt="Flask" src="https://img.shields.io/badge/Flask%20-%23FF6F00.svg?logo=Flask&logoColor=white"></a>
 
-create a restful API using flask and mongodb with 3 URL end points
+###FlowChart
+```flow
+st=>start: Login
+op=>operation: Login operation
+cond=>condition: Successful Yes or No?
+e=>end: JWT token
 
-use JWT access token to build a user module
+st->op->cond
+cond(yes)->e
+cond(no)->op
+```
+###Sequence Diagram
+                    
+```seq
+Client->Server: /register 
+Client->Server: /login
+Server->>Client: JWT token
+Note right of Client: Get\n JWT token
+Client-->Server: Request /template
+Server-->Client:Response JSON
+```
 
-no need to design anything in html
+## Get Started:
+#### Setup:
+> `virtualenv <Name>`
+> `pip install -r requirements.txt`
 
-use only postman
+# Run API:
+> `python app.py`
 
-you need to install flask by  yourself
-You can install flask locally. You can register and host the mongodb database files here https://account.mongodb.com/account/register
+## Task:
+Create a RESTful API using flask and mongodb with 3 URL end points. Used JWT access token to build a user module
+You can register and host the mongodb database files here https://account.mongodb.com/account/register
 You must need to apply CRUD restriction for templates based on the user, so one user can't delete, update, or view other user's Templates
 
 1.Register
