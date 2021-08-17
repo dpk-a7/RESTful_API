@@ -14,13 +14,15 @@
 ![image](https://user-images.githubusercontent.com/55245100/129690225-45cbade1-d77d-4e47-9a2f-fbd330474673.png)
 
 ## Get Started:
-https://github.com/dpk-a7/RESTful_API/blob/main/Steps.png
 #### Setup:
 > `virtualenv <Name>`
 > `pip install -r requirements.txt`
 
-# Run API:
+### Run API:
 > `python app.py`
+
+### Steps:
+![image](https://github.com/dpk-a7/RESTful_API/blob/main/Steps.png)
 
 ## Task:
 Create a RESTful API using flask and mongodb with 3 URL end points. Used JWT access token to build a user module
