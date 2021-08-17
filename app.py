@@ -11,7 +11,7 @@ from flask import Flask, request, jsonify, make_response
 from werkzeug.security import generate_password_hash, check_password_hash
 import uuid
 import jwt
-from datetime import datetime
+import datetime
 from functools import wraps
 from pymongo import MongoClient
 from dotenv import load_dotenv
@@ -66,7 +66,8 @@ def token_required(f):
             data = jwt.decode(token, app.config["SECRET_KEY"], algorithms=["HS256"])
         except Exception as e:
             return jsonify({'message': f'token is invalid: {e}'})
-        return f(*args, **kwargs)
+        user = Users()
+        return f(user.first + '_' + user.last,*args, **kwargs)
 
     return decorator
 
@@ -78,25 +79,23 @@ def register():
     Note that I have used password ony from here, we can have another data base to store user credentials
     """
     args = request.get_json()
-    if args['password'] != '':
-        hashed_password = generate_password_hash(args['password'], method='sha256')
-        user = Users()
-        try:
+    try:
+        if args['password'] != '':
+            hashed_password = generate_password_hash(args['password'], method='sha256')
+            user = Users()
             user.changeVar(id=str(uuid.uuid4()),
                            first_name=args["first_name"],
                            last_name=args["last_name"],
                            email=args["email"],
                            password=hashed_password)
             usermaker(f"{args['first_name']}_{args['last_name']}")
-        except:
-            return jsonify({"error": "Please specify first_name, last_name_, email, password in a json format"})
-    return jsonify({
-        'message': 'registered successfully',
-        'id': '',
-        'user': user.first + ' ' + user.last,
-        'email': user.email,
-        'password': user.password
-    })
+            return jsonify({
+                'message': 'registered successfully',
+                'Your user id': user.id,
+                'Your user name': user.first + '_' + user.last
+            })
+    except:
+        return jsonify({"error": "Please specify first_name, last_name_, email, password in a json format"})
 
 
 @app.route('/login', methods=['POST'])
@@ -105,10 +104,11 @@ def login():
     email and password are required fields
     """
     auth = request.authorization
+    print(auth)
     if not auth or not auth.username or not auth.password:
         return make_response('could not verify', 401, {'WWW.Authentication': 'Basic realm: "login required"'})
     user = Users()
-    if check_password_hash(user.password, auth.password):
+    if check_password_hash(user.password, auth.password) and auth.username == user.first + '_' + user.last:
         token = jwt.encode(
             {'id': user.id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},
             app.config['SECRET_KEY'])
@@ -116,28 +116,31 @@ def login():
     return make_response('could not verify', 401, {'WWW.Authentication': 'Basic realm: "login required"'})
 
 
-@app.route('/<string:user_name>/template/', methods=['POST'])
+@app.route('/template', methods=['POST'])
 @token_required
 def Create(user_name):
     """
     Insert new template
     """
     args = request.get_json()
-    U_col = db[user_name]
-    id = U_col.count_documents({}) + 1
-    temp = {
-        '_id': id,
-        'template_name': args['template_name'],
-        'subject': args['subject'],
-        'body': args['body'],
-        'update_date': datetime.now(),
-        'create_date': datetime.now()
-    }
-    n = U_col.insert_one(temp)
-    return jsonify({args['template_name']: {"id": id}})
+    try:
+        U_col = db[user_name]
+        id = U_col.count_documents({}) + 1
+        temp = {
+            '_id': id,
+            'template_name': args['template_name'],
+            'subject': args['subject'],
+            'body': args['body'],
+            'update_date': datetime.datetime.now(),
+            'create_date': datetime.datetime.now()
+        }
+        n = U_col.insert_one(temp)
+        return jsonify({args['template_name']: {"id": id}})
+    except:
+        return jsonify({"note":"Please include template_name, subject and body"})
 
 
-@app.route('/<string:user_name>/template/', methods=['GET'])
+@app.route('/template', methods=['GET'])
 @token_required
 def Read_all(user_name):
     """
@@ -145,24 +148,23 @@ def Read_all(user_name):
     """
     U_col = db[user_name]
     results = U_col.find({})
-    d = []
-    for result in results:
-        d.append(result)
+    d = [result for result in results]
     return jsonify(d)
 
 
-@app.route('/<string:user_name>/template/<int:template_id>', methods=['GET'])
+@app.route('/template/<int:template_id>', methods=['GET'])
 @token_required
 def Read_single(user_name, template_id):
     """
     Get single template
     """
     U_col = db[user_name]
-    result = U_col.find({"_id": template_id})
-    return jsonify(result)
+    results = U_col.find({"_id": template_id})
+    d = [result for result in results]
+    return jsonify(d)
 
 
-@app.route('/<string:user_name>/template/<int:template_id>', methods=['PUT'])
+@app.route('/template/<int:template_id>', methods=['PUT'])
 @token_required
 def Update(user_name, template_id):
     """
@@ -170,12 +172,12 @@ def Update(user_name, template_id):
     """
     args = request.get_json()
     U_col = db[user_name]
-    args["update_date"] = datetime.now()
+    args["update_date"] = datetime.datetime.now()
     result = U_col.update_one({"_id": template_id}, {"$set": args})
     return jsonify({"status": 200})
 
 
-@app.route('/<string:user_name>/template/<int:template_id>', methods=['DELETE'])
+@app.route('/template/<int:template_id>', methods=['DELETE'])
 @token_required
 def Delete(user_name, template_id):
     """
@@ -187,4 +189,4 @@ def Delete(user_name, template_id):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, threaded=True, )  # debug=True
+    app.run(host='0.0.0.0', port=5000, threaded=True)  # debug=True
