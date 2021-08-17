@@ -4,26 +4,10 @@
 <a href="#"><img alt="Flask" src="https://img.shields.io/badge/Flask%20-%23FF6F00.svg?logo=Flask&logoColor=white"></a>
 
 ###FlowChart
-```flow
-st=>start: Login
-op=>operation: Login operation
-cond=>condition: Successful Yes or No?
-e=>end: JWT token
+![image](https://user-images.githubusercontent.com/55245100/129689978-df036cae-8798-4ae3-97b7-ef977e61a1d9.png)
 
-st->op->cond
-cond(yes)->e
-cond(no)->op
-```
-###Sequence Diagram
-                    
-```seq
-Client->Server: /register 
-Client->Server: /login
-Server->>Client: JWT token
-Note right of Client: Get\n JWT token
-Client-->Server: Request /template
-Server-->Client:Response JSON
-```
+###Sequence Diagram                  
+![image](https://user-images.githubusercontent.com/55245100/129690030-b71e50d2-0d2c-4139-80b8-d2e53278cd4b.png)
 
 ## Get Started:
 #### Setup:
