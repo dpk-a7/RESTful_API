@@ -53,7 +53,7 @@
 
 ![image](https://github.com/dpk-a7/RESTful_API/blob/main/images/update.jpg)
 
--> Delete perticular Template:</br>
+-> Delete particular Template:</br>
 
 ![image](https://github.com/dpk-a7/RESTful_API/blob/main/images/delete.jpg)
 
